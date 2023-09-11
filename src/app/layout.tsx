@@ -5,6 +5,8 @@ import * as React from 'react';
 import '@/styles/globals.css';
 import '@/styles/colors.css';
 
+import Header from '@/components/header/Header';
+
 import { siteConfig } from '@/constant/config';
 
 const inter = Inter({
@@ -53,7 +55,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
-            <body>{children}</body>
+            <body>
+                <div id="root" className="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+                    <Header />
+                    <div className="content-wrapper max-w-screen-2xl font-primary text-base mx-auto px-8">
+                        {children}
+                    </div>
+                </div>
+            </body>
         </html>
     );
 }

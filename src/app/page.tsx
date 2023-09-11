@@ -1,16 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import Svg from '~/next.svg';
 
 export default function HomePage() {
     return (
         <main>
-            <section className="bg-white">
+            <section className="">
                 <div className="layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center">
                     <h1 className="mt-4 font-primary font-extrabold peer">What đờ heo</h1>
                     <p className="mt-2 text-lg text-gray-800 font-secondary font-bold peer-hover:text-primary-300 transition-colors duration-1000 ease-in-out delay-500">
                         What đờ heo
                     </p>
-                    <Svg />
                     <input
                         type="file"
                         className="block w-full text-sm text-slate-500
