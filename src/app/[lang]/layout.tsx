@@ -1,3 +1,4 @@
+import { i18n } from 'i18n-config';
 import { Metadata } from 'next';
 import { Inter, Nunito } from 'next/font/google';
 import * as React from 'react';
@@ -50,9 +51,13 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export async function generateStaticParams() {
+    return i18n.locales.map((locale) => ({ lang: locale }));
+}
+
+export default function RootLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
     return (
-        <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
+        <html lang={params.lang} className={`${inter.variable} ${nunito.variable}`}>
             <body>{children}</body>
         </html>
     );

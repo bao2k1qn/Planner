@@ -1,14 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
+import { Locale } from 'i18n-config';
+
+import { getDictionary } from '@/lib/i18n';
+
 import Svg from '~/next.svg';
 
-export default function HomePage() {
+export default async function HomePage({ params: { lang } }: { params: { lang: Locale } }) {
+    const dictionary = await getDictionary(lang);
+
     return (
         <main>
             <section className="bg-white">
                 <div className="layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center">
-                    <h1 className="mt-4 font-primary font-extrabold peer">What đờ heo</h1>
+                    <h1 className="mt-4 font-primary font-extrabold peer">{dictionary['server-component'].welcome}</h1>
                     <p className="mt-2 text-lg text-gray-800 font-secondary font-bold peer-hover:text-primary-300 transition-colors duration-1000 ease-in-out delay-500">
-                        What đờ heo
+                        {dictionary.counter.decrement}
                     </p>
                     <Svg />
                     <input

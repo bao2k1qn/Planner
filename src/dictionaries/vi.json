@@ -1,0 +1,9 @@
+{
+    "server-component": {
+        "welcome": "Chao mung"
+    },
+    "counter": {
+        "increment": "Tang",
+        "decrement": "Giam"
+    }
+}
