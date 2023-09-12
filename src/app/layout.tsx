@@ -56,14 +56,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
             <body>
-                <div
-                    id="root"
-                    className="antialiased text-slate-900 dark:text-white bg-white dark:bg-slate-900 overflow-x-hidden"
-                >
+                <div id="root" className="antialiased text-slate-900 dark:text-white bg-white dark:bg-slate-900">
                     <Header />
-                    <div className="content-wrapper max-w-screen-2xl font-primary text-base mx-auto px-8">
-                        {children}
-                    </div>
+                    {children}
                 </div>
             </body>
         </html>

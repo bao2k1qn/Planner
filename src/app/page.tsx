@@ -3,6 +3,9 @@
 export default function HomePage() {
     return (
         <main>
+            <section className="w-full h-96 bg-gradient-to-r from-cyan-100 to-yellow-50 dark:from-[#b3ccd1] dark:to-[#d5cebb] text-black">
+                <div className="content-wrapper max-w-screen-2xl font-primary text-base mx-auto px-8">h</div>
+            </section>
             <section className="">
                 <div className="layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center">
                     <h1 className="mt-4 font-primary font-extrabold peer">What đờ heo</h1>

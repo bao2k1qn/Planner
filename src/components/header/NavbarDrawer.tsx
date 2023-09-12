@@ -79,7 +79,7 @@ const NavbarDrawer = () => {
                         return (
                             <li
                                 key={nav.href}
-                                className={`h-full flex items-center px-5 py-2 border-b border-slate-900/10 dark:border-slate-50/[0.06] ${
+                                className={`h-full flex items-center text-xs font-semibold px-5 py-3 border-b border-slate-900/10 dark:border-slate-50/[0.06] ${
                                     isActive && 'text-primary-500 !border-l-4 !border-l-primary-500 bg-primary-400/10'
                                 } `}
                             >
