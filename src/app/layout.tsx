@@ -30,25 +30,25 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     robots: { index: true, follow: true },
     icons: {
-        icon: '/favicon/favicon.ico',
-        shortcut: '/favicon/favicon-16x16.png',
-        apple: '/favicon/apple-touch-icon.png',
+        icon: '/images/logo_RUM.png',
+        shortcut: '/images/logo_RUM.png',
+        apple: '/images/logo_RUM.png',
     },
-    manifest: `/favicon/site.webmanifest`,
+    manifest: `/images/logo_RUM.png`,
     openGraph: {
         url: siteConfig.url,
         title: siteConfig.title,
         description: siteConfig.description,
         siteName: siteConfig.title,
-        images: [`${siteConfig.url}/images/next.svg`],
+        images: [`${siteConfig.url}/images/logo_RUM.png`],
         type: 'website',
-        locale: 'en_US',
+        locale: 'vi_VN',
     },
     twitter: {
         card: 'summary_large_image',
         title: siteConfig.title,
         description: siteConfig.description,
-        images: [`${siteConfig.url}/images/next.svg`],
+        images: [`${siteConfig.url}/images/logo_RUM.png`],
     },
 };
 
@@ -56,7 +56,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
             <body>
-                <div id="root" className="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+                <div
+                    id="root"
+                    className="antialiased text-slate-900 dark:text-white bg-white dark:bg-slate-900 overflow-x-hidden"
+                >
                     <Header />
                     <div className="content-wrapper max-w-screen-2xl font-primary text-base mx-auto px-8">
                         {children}

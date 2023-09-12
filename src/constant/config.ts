@@ -1,6 +1,34 @@
+export interface NavType {
+    name: string;
+    href: string;
+}
+
 export const siteConfig = {
-    title: 'Next.js + Tailwind CSS + TypeScript Starter',
+    title: 'Rum Beauty & Spa',
     description:
         'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
     url: 'https://example.com',
 };
+
+export const navs: NavType[] = [
+    {
+        name: 'Trang chủ',
+        href: '/',
+    },
+    {
+        name: 'Dịch vụ',
+        href: '/services',
+    },
+    {
+        name: 'Sản phẩm',
+        href: '/products',
+    },
+    {
+        name: 'Bài viết',
+        href: '/blogs',
+    },
+    {
+        name: 'Về chúng tôi',
+        href: '/about',
+    },
+];
