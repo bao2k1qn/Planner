@@ -1,85 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Button from '@/components/Button';
+
 export default function HomePage() {
     return (
         <main>
-            <section className="w-full h-96 bg-gradient-to-r from-cyan-100 to-yellow-50 dark:from-[#b3ccd1] dark:to-[#d5cebb] text-black">
-                <div className="content-wrapper max-w-screen-2xl font-primary text-base mx-auto px-8">h</div>
-            </section>
-            <section className="">
-                <div className="layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center">
-                    <h1 className="mt-4 font-primary font-extrabold peer">What đờ heo</h1>
-                    <p className="mt-2 text-lg text-gray-800 font-secondary font-bold peer-hover:text-primary-300 transition-colors duration-1000 ease-in-out delay-500">
-                        What đờ heo
-                    </p>
-                    <input
-                        type="file"
-                        className="block w-full text-sm text-slate-500
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-full file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-violet-50 file:text-violet-700
-                            hover:file:bg-violet-100"
-                    />
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg shadow-primary-300/50 overflow-hidden md:max-w-2xl">
-                        <div className="md:flex">
-                            <div className="md:shrink-0">
-                                <img
-                                    className="h-48 w-full object-cover md:h-full md:w-48"
-                                    src="https://images.unsplash.com/photo-1637734433731-621aca1c8cb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=404&q=80"
-                                    alt="Modern building architecture"
-                                />
-                            </div>
-                            <div className="p-8">
-                                <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                                    Company retreats
-                                </div>
-                                <a
-                                    href="#"
-                                    className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                                >
-                                    Incredible accommodation for your team
-                                </a>
-                                <p className="mt-2 text-slate-500">
-                                    Looking to take your team away on a retreat to enjoy awesome food and take in some
-                                    sunshine? We have a list of places to do just that.
-                                </p>
-                            </div>
+            <section className="w-full h-[500px] ct-bg-custom">
+                <div className="content-wrapper h-full ct-max-w-screen font-primary text-base mx-auto px-10 md:px-4">
+                    <div className="h-full bg-[url('/svgs/bg_landing_page.svg')] bg-no-repeat bg-right-bottom">
+                        <div className="w-3/6 md:w-full p-6">
+                            <h4 className="text-primary-500 pl-6 border-l-4 border-primary-500 mt-10 font-semibold">
+                                Wellcome to Rum & Beauty Spa
+                            </h4>
+                            <h1 className="mt-6 text-3xl font-extrabold text-slate-900">
+                                Chúng tôi cam kết về sự hài lòng của bạn tại <span>Rum & Beauty Spa</span>
+                            </h1>
+                            <p className="mt-6 text-slate-500">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem nostrum nam illum
+                                saepe praesentium provident et sit ab sapiente atque quae tempore quam minus labore
+                                eius, cupiditate officia incidunt accusamus.
+                            </p>
+                            <Button style="mt-4">Xem dịch vụ</Button>
                         </div>
                     </div>
-                    <div className="text-5xl font-extrabold">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
-                            Hello world
-                        </span>
-                    </div>
-                    <table className="table-auto">
-                        <thead>
-                            <tr>
-                                <th>Song</th>
-                                <th>Artist</th>
-                                <th>Year</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                <td>Malcolm Lockyer</td>
-                                <td>1961</td>
-                            </tr>
-                            <tr>
-                                <td>Witchy Woman</td>
-                                <td>The Eagles</td>
-                                <td>1972</td>
-                            </tr>
-                            <tr>
-                                <td>Shining Star</td>
-                                <td>Earth, Wind, and Fire</td>
-                                <td>1975</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <footer className="absolute bottom-2 text-gray-700">© {new Date().getFullYear()} By </footer>
                 </div>
             </section>
         </main>
