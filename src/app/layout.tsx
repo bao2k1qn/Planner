@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
-            <body>
+            <body className="ct-scrollbar">
                 <div id="root" className="antialiased text-slate-900 dark:text-white bg-white dark:bg-slate-900">
                     <Header />
                     {children}
