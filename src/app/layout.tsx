@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         shortcut: '/images/logo_RUM.png',
         apple: '/images/logo_RUM.png',
     },
-    manifest: `/images/logo_RUM.png`,
+    manifest: `/favicon/site.webmanifest`,
     openGraph: {
         url: siteConfig.url,
         title: siteConfig.title,

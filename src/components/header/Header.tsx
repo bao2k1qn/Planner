@@ -14,7 +14,7 @@ const Header = () => {
                     <div className="flex items-center">
                         <Image
                             src="/images/logo_RUM.png"
-                            className="h-min"
+                            className="w-auto h-auto"
                             width={40}
                             height={40}
                             alt="logo description"
