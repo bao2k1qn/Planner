@@ -5,7 +5,6 @@ import * as React from 'react';
 import '@/styles/globals.css';
 import '@/styles/colors.css';
 
-import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 
 import { siteConfig } from '@/constant/config';
@@ -56,11 +55,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
-            <body className="ct-scrollbar">
+            <body>
                 <div id="root" className="antialiased text-slate-900 dark:text-white bg-white dark:bg-slate-900">
                     <Header />
                     {children}
-                    <Footer />
                 </div>
             </body>
         </html>

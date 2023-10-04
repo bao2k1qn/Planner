@@ -16,7 +16,7 @@ const NavbarDrawer = () => {
     return (
         <div
             id="navbar_drawer"
-            className="fixed top-0 right-0 z-50 h-screen overflow-y-auto transition-transform duration-500 translate-x-full bg-white w-80 dark:bg-gray-800"
+            className="fixed top-0 right-0 z-40 h-screen overflow-y-auto transition-transform duration-500 translate-x-full bg-white w-80 dark:bg-gray-800"
         >
             <h5
                 id="drawer-label"

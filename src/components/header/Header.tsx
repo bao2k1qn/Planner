@@ -9,7 +9,7 @@ import NavbarDrawer from './NavbarDrawer';
 const Header = () => {
     return (
         <>
-            <div className="sticky top-0 w-full backdrop-blur transition-colors duration-500 z-10 border-b border-slate-900/10 dark:border-slate-50/[0.06] overflow-x-hidden bg-white/80 dark:bg-slate-900/80">
+            <div className="sticky top-0 w-full backdrop-blur transition-colors duration-500 z-50 border-b border-slate-900/10 dark:border-slate-50/[0.06] overflow-x-hidden bg-white/80 dark:bg-slate-900/80">
                 <div className="ct-max-w-screen mx-auto px-14 h-14 flex justify-between md:px-4">
                     <div className="flex items-center">
                         <Image

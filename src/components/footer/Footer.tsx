@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <section className="w-full h-fit ct-bg-custom-reverse">
             <div className="content-wrapper h-full ct-max-w-screen font-primary text-base mx-auto px-10 md:px-4 text-slate-900">
-                <div className="flex justify-evenly py-10">
+                <div className="flex justify-evenly py-10 md:flex-col">
                     <div>
                         <div className="flex items-center">
                             <Image
