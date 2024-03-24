@@ -34,7 +34,7 @@ const TableOfContent = () => {
             });
         };
         observer.current = new IntersectionObserver((entries) => handleObserver(entries), {
-            rootMargin: '-0% 0% -70% 0px',
+            rootMargin: '-20% 0% -70% 0px',
         });
 
         const elements = Array.from(document.querySelectorAll<HTMLElement>('h2, h3'));

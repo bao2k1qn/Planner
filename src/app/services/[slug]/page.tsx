@@ -1,6 +1,11 @@
 import React from 'react';
 
+import Button from '@/components/Button';
 import SideBarDrawerToggleButton from '@/components/servicesSideBar/SideBarDrawerToggleButton';
+import TextField from '@/components/TextField';
+
+import MailSvg from '~/svgs/topic_5_email.svg';
+
 const data = `
 <h1>The TinyMCE Cloud demo</h1>
 <p><img style="display: block; margin-left: auto; margin-right: auto;" title="Tiny Logo" src="https://www.tiny.cloud/docs/images/logos/android-chrome-256x256.png" alt="TinyMCE Logo" width="128" height="128"></p>
@@ -69,9 +74,38 @@ const Serivces = () => {
             </div>
             <p className="my-3 leading-6 font-semibold text-primary-500 dark:text-primary-400">Installation</p>
             <div
-                className=" prose dark:prose-invert max-w-none prose-h1:text-3xl prose-h1:font-bold"
+                className="prose dark:prose-invert max-w-none prose-h1:text-3xl prose-h1:font-bold mb-10"
                 dangerouslySetInnerHTML={{ __html: data }}
             />
+            <hr />
+            <div className="mt-10 flex">
+                <div className="flex flex-col w-[55%]">
+                    <p className="font-bold w-fit mt-2">Liên hệ với chúng tôi đặt lịch hoặc tư vấn miễn phí</p>
+                    <TextField label="Họ và tên" type="text" placeholder="Nguyễn Văn A" className="mt-2" />
+                    <TextField label="Số điện thoại" type="text" placeholder="0392xxx" className="mt-2" />
+                    <TextField label="Email" type="email" placeholder="example@gmail.com" className="mt-2" />
+                    <Button className="w-full rounded mt-5">Gửi</Button>
+                </div>
+                <div className="flex-grow p-10">
+                    <MailSvg />
+                </div>
+            </div>
+            <div className="mt-5 pt-2 pb-2 border-t border-slate-300 flex justify-between text-slate-500 dark:border-slate-200/5">
+                <div className=" flex">
+                    <p className="text-slate-500 text-sm">Copyright © 2023 MBao Labs</p>
+                    <p className="ml-4 pl-4 border-l border-slate-200 dark:border-slate-200/5">
+                        <a className="text-slate-500 text-sm" href="/brand">
+                            Trademark Policy
+                        </a>
+                    </p>
+                </div>
+                <a
+                    className="text-slate-500 text-sm"
+                    href="https://github.com/tailwindlabs/tailwindcss.com/edit/master/src/pages/docs/word-break.mdx"
+                >
+                    Edit this page on MB
+                </a>
+            </div>
         </div>
     );
 };

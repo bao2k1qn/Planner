@@ -3,8 +3,8 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const ButtonSize = ['sm', 'base'] as const;
-const ButtonColor = ['primary', 'outline', 'light'] as const;
-const ButtonBorder = ['none', 'roundedfull', 'rounded'];
+const ButtonColor = ['primary', 'secondary', 'outline', 'light'] as const;
+const ButtonBorder = ['none', 'roundedfull', 'rounded'] as const;
 
 type ButtonProps = {
     children: React.ReactNode;
@@ -15,6 +15,7 @@ type ButtonProps = {
     outline?: (typeof ButtonBorder)[number];
     isLoading?: boolean;
     disabled?: boolean;
+    style?: React.CSSProperties;
 } & React.ComponentPropsWithRef<'button'>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -29,6 +30,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             // iconRight,
             isLoading,
             disabled,
+            // style,
             ...rest
         },
         _ref,
@@ -53,6 +55,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                             'text-primary-500 border-primary-500 border hover:bg-primary-400/20 active:bg-primary-400/50 disabled:border-gray-400 disabled:text-gray-400 disabled:hover:bg-transparent',
                         variant === 'light' &&
                             'text-primary-500 bg-primary-400/20 rounded-full hover:bg-primary-400/40 active:bg-primary-400/50',
+                        variant === 'secondary' &&
+                            'bg-primary-100 text-primary-500 transition duration-300 hover:bg-primary-200 hover:text-primary-600 focus:bg-primary-200 focus:text-primary-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-primary-300 disabled:bg-primary-100 disabled:text-primary-400 disabled:shadow-none',
                     ],
                     //#endregion  //*=========== Variants ===========
 

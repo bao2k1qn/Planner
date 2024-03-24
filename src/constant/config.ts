@@ -12,7 +12,7 @@ export const siteConfig = {
 
 export const navs: NavType[] = [
     {
-        name: 'Trang chủ',
+        name: 'Giới thiệu',
         href: '/',
     },
     {
@@ -26,9 +26,5 @@ export const navs: NavType[] = [
     {
         name: 'Bài viết',
         href: '/blogs',
-    },
-    {
-        name: 'Về chúng tôi',
-        href: '/about',
     },
 ];

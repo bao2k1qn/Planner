@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
+import { isMatchURL } from '@/lib/helper';
+
 import { navs, NavType } from '@/constant/config';
 
 const NavBar = () => {
@@ -12,7 +14,7 @@ const NavBar = () => {
     return (
         <ul className="h-full flex text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200 md:hidden">
             {navs.map((nav: NavType) => {
-                const isActive = pathname === nav.href;
+                const isActive = isMatchURL(pathname, nav.href);
                 return (
                     <li
                         key={nav.href}
