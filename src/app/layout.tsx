@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import { Inter, Nunito } from 'next/font/google';
-import * as React from 'react';
+import { Inter } from 'next/font/google';
 
-import '@/styles/globals.css';
 import '@/styles/colors.css';
+import '@/styles/globals.css';
 
-import { siteConfig } from '@/constant/config';
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -13,47 +13,28 @@ const inter = Inter({
     display: 'swap',
 });
 
-const nunito = Nunito({
-    subsets: ['latin'],
-    variable: '--font-nunito',
-    display: 'swap',
-});
-
 export const metadata: Metadata = {
-    metadataBase: new URL(siteConfig.url),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
     title: {
-        default: siteConfig.title,
-        template: `%s | ${siteConfig.title}`,
+        default: 'Rum Beauty & Spa',
+        template: '%s - Rum Beauty & Spa',
     },
-    description: siteConfig.description,
-    robots: { index: true, follow: true },
-    icons: {
-        icon: '/favicon/favicon.ico',
-        shortcut: '/favicon/favicon-16x16.png',
-        apple: '/favicon/apple-touch-icon.png',
-    },
-    manifest: `/favicon/site.webmanifest`,
-    openGraph: {
-        url: siteConfig.url,
-        title: siteConfig.title,
-        description: siteConfig.description,
-        siteName: siteConfig.title,
-        images: [`${siteConfig.url}/images/next.svg`],
-        type: 'website',
-        locale: 'en_US',
-    },
+    description: 'Đến và trải nghiệm các dịch vụ tại Rum Beauty & Spa',
     twitter: {
         card: 'summary_large_image',
-        title: siteConfig.title,
-        description: siteConfig.description,
-        images: [`${siteConfig.url}/images/next.svg`],
     },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="vi" className={`${inter.variable} ${nunito.variable}`}>
-            <body>{children}</body>
+        <html lang="vi" className={`${inter.variable}`}>
+            <body>
+                <div id="root" className="bg-white text-slate-900 antialiased">
+                    <Header />
+                    <div className="ct-max-w-screen">{children}</div>
+                    <Footer />
+                </div>
+            </body>
         </html>
     );
 }
