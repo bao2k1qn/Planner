@@ -2,6 +2,12 @@ import { FireIcon, HeartIcon, PlusIcon, SparklesIcon, UsersIcon } from '@heroico
 
 export const CONTACT_TYPES = { LINK: 'LINK', TYPOGRAPHY: 'TYPOGRAPHY' };
 
+export const siteConfig = {
+    title: 'Rum Beauty & Spa',
+    description: 'Đến và trải nghiệm các dịch vụ tại Rum Beauty & Spa',
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+};
+
 export const navs = [
     {
         href: '#features-section',
