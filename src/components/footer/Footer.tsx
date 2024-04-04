@@ -17,7 +17,7 @@ export default function Footer() {
                 <ul className="mb-6 flex flex-wrap items-center justify-center text-slate-900">
                     {navs.map((nav) => (
                         <li key={nav.name}>
-                            <Link href={nav.href} className="mr-4 hover:underline md:mr-6 ">
+                            <Link href={nav.href} className="px-2 py-4 hover:underline md:px-3">
                                 {nav.name}
                             </Link>
                         </li>

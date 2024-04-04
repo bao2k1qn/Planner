@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 import '@/styles/globals.css';
@@ -42,6 +42,10 @@ export const metadata: Metadata = {
         description: siteConfig.description,
         images: [`${siteConfig.url}/images/opengraph-image.png`],
     },
+};
+
+export const viewport: Viewport = {
+    themeColor: '#bbf7d0',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

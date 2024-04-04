@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 
 type EmployeeType = {
     name: string;
-    role: string;
     responsibility: string;
 } & React.ComponentPropsWithRef<'div'>;
 

@@ -21,7 +21,7 @@ export default function HeroSection() {
                 </div>
             </div>
             <div className="col-span-5 md:col-span-12">
-                <Image src="/svgs/hero.svg" width="500" height="500" alt="rum beauty icon" />
+                <Image src="/svgs/hero.svg" width="500" height="500" alt="rum beauty icon" loading="eager" priority />
             </div>
         </section>
     );

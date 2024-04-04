@@ -18,11 +18,11 @@ export default function Benefit({ topic, title, benefits, description, imagePath
             {...rest}
         >
             <div className="w-5/12 md:w-full">
-                <dt className="text-lg">
+                <div className="text-lg">
                     {topic ? <p className="font-semibold leading-7 text-primary-500">{topic}</p> : null}
                     <h2 className="mt-2 text-3xl">{title}</h2>
-                </dt>
-                <dd className="mt-5 text-base text-slate-600">
+                </div>
+                <div className="mt-5 text-base text-slate-600">
                     <p>{description}</p>
                     <ul className="mt-5 leading-8">
                         {benefits.map((benefit) => (
@@ -32,7 +32,7 @@ export default function Benefit({ topic, title, benefits, description, imagePath
                             </li>
                         ))}
                     </ul>
-                </dd>
+                </div>
             </div>
             <div className="flex-1">
                 <Image width="500" height="500" src={imagePath} className="mx-auto h-[400px] object-contain" alt="" />

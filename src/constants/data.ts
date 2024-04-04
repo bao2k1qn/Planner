@@ -123,27 +123,22 @@ export const feedbacks = [
 export const employees = [
     {
         name: 'RUM 01',
-        role: 'Nhân viên Rum',
         responsibility: 'Massage, trị mụn,...',
     },
     {
         name: 'RUM 02',
-        role: 'Nhân viên Rum',
         responsibility: 'Massage, trị mụn,...',
     },
     {
         name: 'RUM 04',
-        role: 'Nhân viên Rum',
         responsibility: 'Massage, trị mụn,...',
     },
     {
         name: 'RUM 07',
-        role: 'Nhân viên Rum',
         responsibility: 'Massage, trị mụn,...',
     },
     {
         name: 'RUM 08',
-        role: 'Nhân viên Rum',
         responsibility: 'Massage, trị mụn,...',
     },
 ];

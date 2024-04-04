@@ -15,11 +15,11 @@ const Header = () => {
                         Nâng tầm vẻ đẹp Việt
                     </p>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                     <nav>
                         <NavBar />
                     </nav>
-                    <Link href={process.env.NEXT_PUBLIC_ZALO_BOOKING_URL} target="_blank">
+                    <Link href={process.env.NEXT_PUBLIC_ZALO_BOOKING_URL} target="_blank" className="flex items-center">
                         <Button>Đặt lịch</Button>
                     </Link>
                 </div>
