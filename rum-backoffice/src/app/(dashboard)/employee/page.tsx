@@ -1,5 +1,5 @@
 import { columns } from "@/components/employee/employee_table/columns";
-import { taskSchema } from "@/components/employee/data/schema";
+import { employeeSchema } from "@/components/employee/data/schema";
 import React from "react";
 import { z } from "zod";
 import { promises as fs } from "fs";
@@ -13,7 +13,7 @@ async function getTasks() {
 
   const tasks = JSON.parse(data.toString());
 
-  return z.array(taskSchema).parse(tasks);
+  return z.array(employeeSchema).parse(tasks);
 }
 
 const ServicePage = async () => {

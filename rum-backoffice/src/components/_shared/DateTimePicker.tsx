@@ -21,8 +21,8 @@ import {
 } from "../ui/select";
 
 interface DateTimePickerProps {
-  date: Date;
-  setDate: (date: Date) => void;
+  date: string;
+  setDate: (date: string) => void;
 }
 
 export function DateTimePicker({ date, setDate }: DateTimePickerProps) {
@@ -38,7 +38,7 @@ export function DateTimePicker({ date, setDate }: DateTimePickerProps) {
     });
 
     setSelectedDateTime(modifiedDay);
-    setDate(modifiedDay.toDate());
+    setDate(modifiedDay.toISOString());
   };
 
   const handleTimeChange = (hour: string, minute: string) => {
@@ -48,7 +48,7 @@ export function DateTimePicker({ date, setDate }: DateTimePickerProps) {
     });
 
     setSelectedDateTime(modifiedDay);
-    setDate(modifiedDay.toDate());
+    setDate(modifiedDay.toISOString());
   };
 
   return (

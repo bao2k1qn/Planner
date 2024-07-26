@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useInitialServiceForm, {
   ServiceFormType,
-} from "./composables/useInitialServiceForm";
+} from "../composables/useInitialServiceForm";
 
 const ServiceForm = () => {
   const form = useInitialServiceForm();
@@ -57,7 +57,6 @@ const ServiceForm = () => {
               <FormControl>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="Vui lòng nhập thời gian."
                   {...field}
                 />
@@ -78,7 +77,6 @@ const ServiceForm = () => {
               <FormControl>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="Vui lòng nhập giá dịch vụ."
                   {...field}
                 />

@@ -14,9 +14,12 @@ import {
 } from "@/components/ui/popover";
 import moment from "moment";
 
-const DatePicker = () => {
-  const [date, setDate] = React.useState<Date>(new Date());
+interface DatePickerProps {
+  date: string | undefined;
+  setDate: (date: string) => void;
+}
 
+const DatePicker = ({ date, setDate }: DatePickerProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -38,8 +41,10 @@ const DatePicker = () => {
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={(date) => date && setDate(date)}
+          selected={moment(date).toDate()}
+          onSelect={(date) =>
+            date && setDate(moment(date).startOf("d").toISOString())
+          }
           initialFocus
           locale={vi}
         />

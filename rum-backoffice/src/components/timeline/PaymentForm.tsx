@@ -121,7 +121,6 @@ const PaymentForm = () => {
               <FormControl>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="Vui lòng nhập giá dịch vụ."
                   {...field}
                   value={field.value}
@@ -146,7 +145,6 @@ const PaymentForm = () => {
               <FormControl>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="Tiền tips không bắt buộc."
                   {...field}
                 />

@@ -15,6 +15,9 @@ import { Button } from "@/components/ui/button";
 import useInitialEmployeeForm, {
   EmployeeFormType,
 } from "./composables/useInitialEmployeeForm";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import DatePicker from "@/components/_shared/DatePicker";
 
 const EmployeeForm = () => {
   const form = useInitialEmployeeForm();
@@ -40,9 +43,12 @@ const EmployeeForm = () => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tên dịch vụ</FormLabel>
+              <FormLabel>Tên nhân viên</FormLabel>
               <FormControl>
-                <Input placeholder="Vui lòng nhập tên dịch vụ." {...field} />
+                <Input
+                  placeholder="Vui lòng nhập đầy đủ tên nhân viên."
+                  {...field}
+                />
               </FormControl>
               <FormMessage className="!m-0" />
             </FormItem>
@@ -50,43 +56,92 @@ const EmployeeForm = () => {
         />
         <FormField
           control={form.control}
-          name="period"
+          name="nameAlias"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Thời gian</FormLabel>
+              <FormLabel>Tên ẩn danh.</FormLabel>
               <FormControl>
-                <Input
-                  type="number"
-                  min="0"
-                  placeholder="Vui lòng nhập thời gian."
-                  {...field}
-                />
+                <Input placeholder="Nhập tên ẩn danh tại đây." {...field} />
               </FormControl>
               <FormMessage className="!m-0" />
               <FormDescription className="leading-snug">
-                Thời gian diễn ra dịch vụ. Đợn vị: phút
+                Tên ẩn danh có thể giúp dễ quản lý và bảo mật hơn.
               </FormDescription>
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Giá dịch vụ</FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  min="0"
-                  placeholder="Vui lòng nhập giá dịch vụ."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className="!m-0" />
-            </FormItem>
-          )}
-        />
+        <div className="flex gap-4">
+          <FormField
+            control={form.control}
+            name="skills"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Vai trò</FormLabel>
+                <FormControl>
+                  <Input placeholder="Nhập vai trò tại đây." {...field} />
+                </FormControl>
+                <FormMessage className="!m-0" />
+                <FormDescription className="leading-snug">
+                  Vai trò là chức vụ của nhân viên. VD: Kỹ thuật viên, bác
+                  sĩ,...
+                </FormDescription>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="gender"
+            render={({ field }) => (
+              <FormItem className="w-1/4 flex flex-col items-center">
+                <FormLabel>Giới tính</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    defaultValue={field.value}
+                    onValueChange={field.onChange}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="Nam" id="female" />
+                      <Label htmlFor="female">Nam</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="Nữ" id="male" />
+                      <Label htmlFor="male">Nữ</Label>
+                    </div>
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage className="!m-0" />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex gap-4">
+          <FormField
+            control={form.control}
+            name="dob"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Ngày sinh</FormLabel>
+                <FormControl>
+                  <DatePicker date={field.value} setDate={field.onChange} />
+                </FormControl>
+                <FormMessage className="!m-0" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="joiningDate"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Ngày vào</FormLabel>
+                <FormControl>
+                  <DatePicker date={field.value} setDate={field.onChange} />
+                </FormControl>
+                <FormMessage className="!m-0" />
+              </FormItem>
+            )}
+          />
+        </div>
         <div className="flex-1 flex justify-end">
           <Button type="submit" className="mt-auto">
             Tạo dịch vụ

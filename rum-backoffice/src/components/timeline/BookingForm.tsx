@@ -160,8 +160,8 @@ const BookingForm = () => {
                 <DateTimePicker date={field.value} setDate={field.onChange} />
                 <FormMessage className="!m-0" />
                 <FormDescription className="leading-snug">
-                  Bạn cần nhập thời gian bắt đầu để thời gian kết thúc sẽ được
-                  tính tự động.
+                  Bạn cần cung cấp thời gian bắt đầu để thời gian kết thúc sẽ
+                  được tính tự động.
                 </FormDescription>
               </FormItem>
             )}

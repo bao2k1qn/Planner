@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import DatePicker from "../_shared/DatePicker";
 import { Button } from "../ui/button";
@@ -16,7 +17,7 @@ import PaymentForm from "./PaymentForm";
 const TimelineActions = () => (
   <div className="flex justify-between items-center w-full h-14 p-4 bg-slate-100">
     <div className="">
-      <DatePicker />
+      <DatePicker date="2024-07-24" setDate={(date) => null} />
     </div>
     <div className="space-x-2">
       <Button variant="outline">Sắp xếp</Button>

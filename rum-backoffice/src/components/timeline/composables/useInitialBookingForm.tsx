@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import moment from "moment";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -21,12 +22,18 @@ const bookingFormSchema = z
     isSelectedInAdvance: z.boolean({
       invalid_type_error: "Đặt trước phải là một giá trị true/false.",
     }),
-    startDate: z.date({
-      required_error: "Vui lòng chọn thời gian bắt đầu.",
-    }),
-    endDate: z.date({
-      required_error: "Vui lòng chọn thời gian kết thúc.",
-    }),
+    startDate: z
+      .string({ required_error: "Vui lòng chọn thời gian bắt đầu." })
+      .min(1, { message: "Vui lòng chọn thời gian bắt đầu." })
+      .refine((date) => !date || (date && moment(date).isValid()), {
+        message: "Vui lòng cung cấp ngày hợp lệ.",
+      }),
+    endDate: z
+      .string({ required_error: "Vui lòng chọn thời gian bắt đầu." })
+      .min(1, { message: "Vui lòng chọn thời gian kết thúc." })
+      .refine((date) => !date || (date && moment(date).isValid()), {
+        message: "Vui lòng cung cấp ngày hợp lệ.",
+      }),
     notes: z
       .string()
       .max(255, { message: "Phần chú ý không được vượt quá 255 kí tự" })
@@ -51,6 +58,7 @@ type BookingFormValues = z.infer<typeof bookingFormSchema>;
 
 // This can come from your database or API.
 const defaultValues: Partial<BookingFormValues> = {
+  name: "",
   isSelectedInAdvance: false,
 };
 

@@ -7,10 +7,15 @@ const paymentFormSchema = z.object({
     required_error: "Vui lòng chọn phương thức thanh toán.",
   }),
   servicePrice: z
-    .string({ required_error: "Vui lòng nhập giá dịch vụ" })
-    .refine((arg) => arg !== "", {
-      message: "Vui lòng nhập giá dịch vụ",
-    })
+    .number()
+    .or(
+      z
+        .string({ required_error: "Vui lòng cung cấp giá dịch vụ" })
+        .refine((arg) => arg !== "", {
+          message: "Vui lòng cung cấp giá dịch vụ",
+        })
+    )
+
     .pipe(
       z.coerce
         .number()
@@ -20,8 +25,7 @@ const paymentFormSchema = z.object({
   tips: z.coerce
     .number()
     .int({ message: "Tiền tips phải là một số nguyên." })
-    .nonnegative({ message: "Tiền tips phải là một số dương." })
-    .transform((arg) => (arg === 0 ? undefined : arg)),
+    .nonnegative({ message: "Tiền tips phải là một số dương." }),
   notes: z
     .string()
     .max(255, { message: "Phần chú ý không được vượt quá 255 kí tự" })
@@ -32,8 +36,8 @@ type PaymentFormType = z.infer<typeof paymentFormSchema>;
 
 const defaultValues: PaymentFormType = {
   paymentType: "COD",
-  servicePrice: 1,
-  tips: 1,
+  servicePrice: 0,
+  tips: 0,
 };
 
 const useInitialPaymentForm = () => {

@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
 
-import { taskSchema } from "../data/schema";
+import { employeeSchema } from "../data/schema";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -21,7 +21,7 @@ interface DataTableRowActionsProps<TData> {
 export default function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = taskSchema.parse(row.original);
+  const task = employeeSchema.parse(row.original);
 
   return (
     <DropdownMenu>
@@ -36,9 +36,6 @@ export default function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem>Chỉnh sửa</DropdownMenuItem>
-        <DropdownMenuItem disabled className="text-muted-foreground">
-          Tạo giảm giá - Chưa thực hiện
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-red-500 font-bold">
           Xóa

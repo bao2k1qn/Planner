@@ -36,11 +36,11 @@ export const columns: ColumnDef<Task>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "id",
+    accessorKey: "service_id",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="ID Dịch vụ" />
     ),
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    cell: ({ row }) => <div>{row.getValue("service_id")}</div>,
     enableSorting: true,
     enableHiding: false,
   },

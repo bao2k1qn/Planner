@@ -1,38 +1,20 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { employeeSchema } from "../../data/schema";
 
-const employeeFormSchema = z.object({
-  name: z
-    .string({ required_error: "Vui lòng nhập tên dịch vụ." })
-    .max(255, { message: "Tên dịch vụ không được vượt quá 255 kí tự." }),
-  period: z
-    .string({ required_error: "Vui lòng nhập khoảng thời gian." })
-    .refine((arg) => arg !== "", {
-      message: "Vui lòng nhập khoảng thời gian.",
-    })
-    .pipe(
-      z.coerce
-        .number()
-        .int({ message: "Thời gian phải là một số nguyên." })
-        .nonnegative({ message: "Thời gian phải là một số dương." })
-    ),
-  price: z
-    .string({ required_error: "Vui lòng nhập giá tiền." })
-    .refine((arg) => arg !== "", {
-      message: "Vui lòng nhập khoảng giá tiền.",
-    })
-    .pipe(
-      z.coerce
-        .number()
-        .int({ message: "Giá tiền phải là một số nguyên." })
-        .nonnegative({ message: "Giá tiền phải là một số dương." })
-    ),
-});
+const employeeFormSchema = employeeSchema.omit({ id: true });
 
 type EmployeeFormType = z.infer<typeof employeeFormSchema>;
 
-const defaultValues: Partial<EmployeeFormType> = {};
+const defaultValues: Partial<EmployeeFormType> = {
+  name: "",
+  nameAlias: "",
+  gender: "Nữ",
+  skills: "",
+  dob: "",
+  joiningDate: "",
+};
 
 const useInitialEmployeeForm = () => {
   const form = useForm<EmployeeFormType>({

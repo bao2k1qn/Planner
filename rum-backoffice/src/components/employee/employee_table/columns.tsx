@@ -3,12 +3,12 @@
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Checkbox } from "../../ui/checkbox";
-import { Task } from "../data/schema";
+import { Employee } from "../data/schema";
 import DataTableColumnHeader from "./DataTableColumnHeader";
 import DataTableRowActions from "./DataTableRowActions";
-import { StopwatchIcon } from "@radix-ui/react-icons";
+import moment from "moment";
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<Employee>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -58,33 +58,67 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: "period",
+    accessorKey: "nameAlias",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Thời gian" />
+      <DataTableColumnHeader column={column} title="Tên ẩn danh" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
-          <StopwatchIcon className="mr-2 h-4 w-4 text-muted-foreground" />
-
-          <span>{row.getValue("period") + " phút"}</span>
+          <span>{row.getValue("nameAlias")}</span>
         </div>
       );
     },
   },
   {
-    accessorKey: "price",
+    accessorKey: "skills",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Giá" />
+      <DataTableColumnHeader column={column} title="Vai trò" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{row.getValue("skills")}</span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "gender",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Giới tính" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{row.getValue("gender")}</span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "dob",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Tuổi" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span>{moment(row.getValue("dob")).diff("1981-01-01", "years")}</span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "joiningDate",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Ngày vào" />
     ),
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
           <span>
-            {(row.getValue("price") as number).toLocaleString("it-IT", {
-              style: "currency",
-              currency: "VND",
-            })}
+            {moment(row.getValue("joiningDate")).format("DD-MM-YYYY")}
           </span>
         </div>
       );
