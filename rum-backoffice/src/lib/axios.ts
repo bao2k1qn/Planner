@@ -1,16 +1,21 @@
 import axios, {
+  AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import { navigate } from "./actions/redirectAction";
 
 enum StatusCode {
+  BadRequest = 400,
   Unauthorized = 401,
   Forbidden = 403,
   TooManyRequests = 429,
   InternalServerError = 500,
 }
+
+type ServerError = { message: string };
 
 const headers: Readonly<Record<string, string | boolean>> = {
   Accept: "*/*",
@@ -100,30 +105,46 @@ class Http {
   ): Promise<R> {
     return this.http.delete<T, R>(url, config);
   }
+
+  isAxiosError<T>(error: any): error is AxiosError<T> {
+    return error instanceof AxiosError;
+  }
+
   private handleError(error: any) {
+    // Check if error is AxiosError
+    if (!this.isAxiosError<ServerError>(error))
+      return Promise.reject(
+        new Error("Đã có lỗi xảy ra. Vui lòng thử lại sau.")
+      );
+
+    // Check if response is esxit. If the response is esxit, this response is returned from server
     const { response } = error;
     if (!response)
       return Promise.reject(
         new Error("Đã có lỗi xảy ra. Vui lòng thử lại sau.")
       );
 
+    // Handle for each error.
     const { status } = response;
-
     switch (status) {
+      case StatusCode.BadRequest: {
+        return Promise.reject(new Error(response.data.message));
+      }
       case StatusCode.InternalServerError: {
-        // Handle InternalServerError
-        break;
+        return Promise.reject(
+          new Error("Đã có lỗi xảy ra. Vui lòng thử lại sau.")
+        );
       }
       case StatusCode.Forbidden: {
-        // Handle Forbidden
-        break;
+        return Promise.reject(new Error("Tài nguyên truy cập bị cấm."));
       }
       case StatusCode.Unauthorized: {
-        // Handle Unauthorized
-        break;
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        navigate("/login");
+        return Promise.reject(new Error(response.data.message));
       }
       case StatusCode.TooManyRequests: {
-        // Handle TooManyRequests
         break;
       }
     }
