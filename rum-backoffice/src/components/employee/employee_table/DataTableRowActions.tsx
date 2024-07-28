@@ -11,8 +11,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
-
-import { employeeSchema } from "../data/schema";
+import EmployeeFormDialog from "../employee_forms/EmployeeFormDialog";
+import EmployeeDeteleDialog from "../employee_forms/EmployeeDeteleDialog";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -21,8 +21,6 @@ interface DataTableRowActionsProps<TData> {
 export default function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = employeeSchema.parse(row.original);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,11 +33,13 @@ export default function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Chỉnh sửa</DropdownMenuItem>
+        <div className="p-2 hover:bg-slate-100 cursor-pointer">
+          <EmployeeFormDialog employeeId={row.getValue("employeeId")} />
+        </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-500 font-bold">
-          Xóa
-        </DropdownMenuItem>
+        <div className="p-2 hover:bg-slate-100 cursor-pointer text-red-500 font-bold">
+          <EmployeeDeteleDialog employeeId={row.getValue("employeeId")} />
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

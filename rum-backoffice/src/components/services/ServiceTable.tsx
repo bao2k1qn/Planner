@@ -1,6 +1,6 @@
 "use client";
-import React, { useMemo, useState } from "react";
-import Table, { TableStateType } from "../_shared/Table";
+import React from "react";
+import Table from "../_shared/Table";
 import { columns } from "./service_table/columns";
 import useServicesQuery from "./composables/useServicesQuery";
 import useFilterServices from "./composables/useFilterServices";

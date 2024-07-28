@@ -4,7 +4,7 @@ import { z } from "zod";
 // We're keeping a simple non-relational schema here.
 // IRL, you will have a schema for your data models.
 export const employeeSchema = z.object({
-  id: z.string(),
+  employeeId: z.string(),
   name: z
     .string()
     .min(1, { message: "Vui lòng cung cấp tên nhân viên." })
@@ -17,7 +17,7 @@ export const employeeSchema = z.object({
     .string()
     .max(255, { message: "Tên ẩn danh không được vượt quá 255 kí tự" })
     .optional(),
-  gender: z.enum(["Nam", "Nữ"]).optional(),
+  gender: z.enum(["F", "M"]).optional(),
   dob: z
     .string()
     .optional()

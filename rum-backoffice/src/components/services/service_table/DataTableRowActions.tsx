@@ -38,14 +38,14 @@ export default function DataTableRowActions<TData>({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <div className="p-2 hover:bg-slate-100 cursor-pointer">
-          <ServiceFormDialog serviceId={row.getValue("service_id")} />
+          <ServiceFormDialog serviceId={row.getValue("serviceId")} />
         </div>
         <DropdownMenuItem disabled className="text-muted-foreground">
           Tạo giảm giá - Chưa thực hiện
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="p-2 hover:bg-slate-100 cursor-pointer text-red-500 font-bold">
-          <ServiceDeteleDialog serviceId={row.getValue("service_id")} />
+          <ServiceDeteleDialog serviceId={row.getValue("serviceId")} />
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

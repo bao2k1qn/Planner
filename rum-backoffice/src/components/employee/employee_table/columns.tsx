@@ -36,11 +36,11 @@ export const columns: ColumnDef<Employee>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "id",
+    accessorKey: "employeeId",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="ID Nhân viên" />
     ),
-    cell: ({ row }) => <div>{row.getValue("id")}</div>,
+    cell: ({ row }) => <div>{row.getValue("employeeId")}</div>,
     enableSorting: true,
     enableHiding: false,
   },
@@ -91,7 +91,7 @@ export const columns: ColumnDef<Employee>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
-          <span>{row.getValue("gender")}</span>
+          <span>{row.getValue("gender") === "F" ? "Nữ" : "Nam"}</span>
         </div>
       );
     },
@@ -104,7 +104,11 @@ export const columns: ColumnDef<Employee>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
-          <span>{moment(row.getValue("dob")).diff("1981-01-01", "years")}</span>
+          <span>
+            {row.getValue("dob")
+              ? moment().diff(row.getValue("dob"), "years")
+              : ""}
+          </span>
         </div>
       );
     },
@@ -118,7 +122,9 @@ export const columns: ColumnDef<Employee>[] = [
       return (
         <div className="flex items-center">
           <span>
-            {moment(row.getValue("joiningDate")).format("DD-MM-YYYY")}
+            {row.getValue("joiningDate")
+              ? moment(row.getValue("joiningDate")).format("DD-MM-YYYY")
+              : ""}
           </span>
         </div>
       );

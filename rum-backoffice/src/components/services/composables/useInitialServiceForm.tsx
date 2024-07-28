@@ -42,7 +42,7 @@ const serviceFormSchema = z.object({
 });
 
 type ServiceFormType = z.infer<typeof serviceFormSchema>;
-type ServiceType = ServiceFormType & { service_id: string };
+type ServiceType = ServiceFormType & { serviceId: string };
 
 const defaultValues: Partial<ServiceFormType> = {
   name: "",

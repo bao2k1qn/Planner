@@ -13,29 +13,38 @@ import { toast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useInitialEmployeeForm, {
-  EmployeeFormType,
-} from "./composables/useInitialEmployeeForm";
+  InitialEmployeeFormProps,
+} from "../composables/useInitialEmployeeForm";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import DatePicker from "@/components/_shared/DatePicker";
+import { useEffect } from "react";
+import useEmployeeMutation from "../composables/useEmployeeMutation";
+import { Icons } from "@/components/ui/icons";
 
-const EmployeeForm = () => {
-  const form = useInitialEmployeeForm();
+type EmployeeFormProps = {
+  onSuccess?: (...args: any[]) => void;
+} & InitialEmployeeFormProps;
 
-  function onSubmit(data: EmployeeFormType) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+const EmployeeForm = ({ employeeId, onSuccess }: EmployeeFormProps) => {
+  const { form, fetchEmployee } = useInitialEmployeeForm({ employeeId });
+  const { isPending, isSuccess, isError, error, mutate } = useEmployeeMutation({
+    employeeId,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      if (onSuccess) onSuccess();
+      toast({
+        title: "Thành công.",
+      });
+    }
+  }, [isSuccess]);
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit((data) => mutate(data))}
         className="flex-1 flex flex-col space-y-4"
       >
         <FormField
@@ -100,11 +109,11 @@ const EmployeeForm = () => {
                     onValueChange={field.onChange}
                   >
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="Nam" id="female" />
+                      <RadioGroupItem value="M" id="female" />
                       <Label htmlFor="female">Nam</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="Nữ" id="male" />
+                      <RadioGroupItem value="F" id="male" />
                       <Label htmlFor="male">Nữ</Label>
                     </div>
                   </RadioGroup>
@@ -122,7 +131,24 @@ const EmployeeForm = () => {
               <FormItem className="flex-1">
                 <FormLabel>Ngày sinh</FormLabel>
                 <FormControl>
-                  <DatePicker date={field.value} setDate={field.onChange} />
+                  <DatePicker
+                    date={field.value}
+                    setDate={field.onChange}
+                    captionLayout="dropdown-buttons"
+                    fromYear={1960}
+                    toYear={2030}
+                    classNames={{
+                      caption:
+                        "flex justify-center pt-1 relative items-center px-10",
+                      caption_label:
+                        "flex items-center gap-2 text-sm font-medium",
+                      caption_dropdowns: "flex gap-4 [&_.rdp-vhidden]:hidden",
+                      dropdown_month: "relative inline-flex items-center",
+                      dropdown_year: "relative inline-flex items-center",
+                      dropdown:
+                        "absolute inset-0 w-full appearance-none opacity-0 z-10 cursor-pointer",
+                    }}
+                  />
                 </FormControl>
                 <FormMessage className="!m-0" />
               </FormItem>
@@ -142,9 +168,23 @@ const EmployeeForm = () => {
             )}
           />
         </div>
+        {(isError || fetchEmployee.isError) && (
+          <p className="text-[0.8rem] font-medium text-destructive mt-1">
+            * {fetchEmployee.error?.message || error?.message}
+          </p>
+        )}
         <div className="flex-1 flex justify-end">
-          <Button type="submit" className="mt-auto">
-            Tạo dịch vụ
+          <Button
+            type="submit"
+            className="mt-auto"
+            disabled={
+              isPending || fetchEmployee.isFetching || fetchEmployee.isError
+            }
+          >
+            {isPending ? (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            ) : null}
+            {employeeId ? "Chỉnh sửa" : "Tạo nhân viên"}
           </Button>
         </div>
       </form>
