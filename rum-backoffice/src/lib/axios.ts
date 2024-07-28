@@ -128,7 +128,7 @@ class Http {
     const { status } = response;
     switch (status) {
       case StatusCode.BadRequest: {
-        return Promise.reject(new Error(response.data.message));
+        break;
       }
       case StatusCode.InternalServerError: {
         return Promise.reject(
@@ -148,7 +148,7 @@ class Http {
         break;
       }
     }
-    return Promise.reject(error);
+    return Promise.reject(new Error(response.data.message));
   }
 }
 

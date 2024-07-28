@@ -1,4 +1,7 @@
+import { http } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -39,6 +42,7 @@ const serviceFormSchema = z.object({
 });
 
 type ServiceFormType = z.infer<typeof serviceFormSchema>;
+type ServiceType = ServiceFormType & { service_id: string };
 
 const defaultValues: Partial<ServiceFormType> = {
   name: "",
@@ -46,13 +50,35 @@ const defaultValues: Partial<ServiceFormType> = {
   price: 0,
 };
 
-const useInitialServiceForm = () => {
+type InitialServiceFormProps = {
+  serviceId?: string;
+};
+
+const useInitialServiceForm = ({ serviceId }: InitialServiceFormProps) => {
   const form = useForm<ServiceFormType>({
     resolver: zodResolver(serviceFormSchema),
     defaultValues,
   });
-  return form;
+
+  const fetchService = useQuery({
+    queryKey: ["service", serviceId],
+    queryFn: async () => {
+      return await http.get<ServiceType>(`/services/${serviceId}`);
+    },
+    enabled: !!serviceId,
+  });
+
+  useEffect(() => {
+    const service = fetchService.data?.data;
+    if (service) {
+      form.setValue("name", service.name);
+      form.setValue("period", service.period);
+      form.setValue("price", service.price);
+    }
+  }, [fetchService.data]);
+
+  return { form, fetchService };
 };
 
 export default useInitialServiceForm;
-export type { ServiceFormType };
+export type { ServiceFormType, InitialServiceFormProps, ServiceType };

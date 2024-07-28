@@ -27,6 +27,11 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(compression());
 
+app.use((req, res, next) => {
+    console.log(req.method + ' ' + req.path);
+    next();
+});
+
 app.use('/api/auth', authRoute);
 app.use('/api/services', servicesRoute);
 app.use('/api/employees', employeesRoute);

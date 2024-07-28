@@ -13,26 +13,36 @@ import { toast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useInitialServiceForm, {
+  InitialServiceFormProps,
   ServiceFormType,
 } from "../composables/useInitialServiceForm";
+import useServiceMutation from "../composables/useServiceMutation";
+import { Icons } from "@/components/ui/icons";
+import { useEffect } from "react";
 
-const ServiceForm = () => {
-  const form = useInitialServiceForm();
+type ServiceFormProps = {
+  onSuccess?: (...args: any[]) => void;
+} & InitialServiceFormProps;
 
-  function onSubmit(data: ServiceFormType) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+const ServiceForm = ({ serviceId, onSuccess }: ServiceFormProps) => {
+  const { form, fetchService } = useInitialServiceForm({ serviceId });
+  const { isPending, isSuccess, isError, error, mutate } = useServiceMutation({
+    serviceId,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      if (onSuccess) onSuccess();
+      toast({
+        title: "Thành công.",
+      });
+    }
+  }, [isSuccess]);
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit((data) => mutate(data))}
         className="flex-1 flex flex-col space-y-4"
       >
         <FormField
@@ -85,9 +95,23 @@ const ServiceForm = () => {
             </FormItem>
           )}
         />
+        {(isError || fetchService.isError) && (
+          <p className="text-[0.8rem] font-medium text-destructive mt-1">
+            * {fetchService.error?.message || error?.message}
+          </p>
+        )}
         <div className="flex-1 flex justify-end">
-          <Button type="submit" className="mt-auto">
-            Tạo dịch vụ
+          <Button
+            type="submit"
+            className="mt-auto"
+            disabled={
+              isPending || fetchService.isFetching || fetchService.isError
+            }
+          >
+            {isPending ? (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            ) : null}
+            {serviceId ? "Chỉnh sửa" : "Tạo dịch vụ"}
           </Button>
         </div>
       </form>

@@ -1,9 +1,7 @@
 "use client";
 import { http } from "@/lib/axios";
-import { ServiceFormType } from "./useInitialServiceForm";
+import { ServiceType } from "./useInitialServiceForm";
 import { useQuery } from "@tanstack/react-query";
-
-type ServiceType = ServiceFormType & { service_id: string };
 
 const useServicesQuery = (params: any) => {
   const query = useQuery({
@@ -13,6 +11,8 @@ const useServicesQuery = (params: any) => {
         params,
       });
     },
+    gcTime: Infinity,
+    staleTime: Infinity,
   });
   return query;
 };

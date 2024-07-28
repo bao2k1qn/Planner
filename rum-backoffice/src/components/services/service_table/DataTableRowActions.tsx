@@ -13,6 +13,8 @@ import {
 } from "../../ui/dropdown-menu";
 
 import { taskSchema } from "../data/schema";
+import ServiceFormDialog from "../service_forms/ServiceFormDialog";
+import ServiceDeteleDialog from "../service_forms/ServiceDeteleDialog";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -35,14 +37,16 @@ export default function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Chỉnh sửa</DropdownMenuItem>
+        <div className="p-2 hover:bg-slate-100 cursor-pointer">
+          <ServiceFormDialog serviceId={row.getValue("service_id")} />
+        </div>
         <DropdownMenuItem disabled className="text-muted-foreground">
           Tạo giảm giá - Chưa thực hiện
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-500 font-bold">
-          Xóa
-        </DropdownMenuItem>
+        <div className="p-2 hover:bg-slate-100 cursor-pointer text-red-500 font-bold">
+          <ServiceDeteleDialog serviceId={row.getValue("service_id")} />
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
