@@ -34,26 +34,38 @@ const serviceFormSchema = z.object({
 });
 
 const employeeSchema = z.object({
-    id: z.string(),
     name: z
         .string()
         .min(1, { message: 'Vui lòng cung cấp tên nhân viên.' })
         .max(255, { message: 'Tên nhân viên không được vượt quá 255 kí tự' }),
-    nameAlias: z.string().max(255, { message: 'Tên ẩn danh không được vượt quá 255 kí tự' }).optional(),
-    skills: z.string().max(255, { message: 'Tên ẩn danh không được vượt quá 255 kí tự' }).optional(),
-    gender: z.enum(['Nam', 'Nữ']).optional(),
+    nameAlias: z
+        .string()
+        .max(255, { message: 'Tên ẩn danh không được vượt quá 255 kí tự' })
+        .optional()
+        .transform((arg) => arg || undefined),
+    skills: z
+        .string()
+        .max(255, { message: 'Tên ẩn danh không được vượt quá 255 kí tự' })
+        .optional()
+        .transform((arg) => arg || undefined),
+    gender: z
+        .enum(['M', 'F'])
+        .optional()
+        .transform((arg) => arg || undefined),
     dob: z
         .string()
         .optional()
         .refine((date) => !date || (date && moment(date).isValid()), {
             message: 'Vui lòng cung cấp ngày hợp lệ.',
-        }),
+        })
+        .transform((arg) => arg || undefined),
     joiningDate: z
         .string()
         .optional()
         .refine((date) => !date || (date && moment(date).isValid()), {
             message: 'Vui lòng cung cấp ngày hợp lệ.',
-        }),
+        })
+        .transform((arg) => arg || undefined),
 });
 
 type serviceFormSchemaType = z.infer<typeof serviceFormSchema>;

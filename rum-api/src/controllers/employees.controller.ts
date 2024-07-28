@@ -19,11 +19,11 @@ export const getEmployees = catchAsync(async (req: Request, res: Response, next:
 
 export const getEmployee = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // Validate params
-    const employeeId = req.params.employee_id;
+    const employeeId = req.params.employeeId;
     if (!employeeId) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu lấy nhân viên không hợp lệ.'));
 
     // Query data
-    const { data: employees, error } = await supabase.from('employees').select('*').eq('employee_id', employeeId);
+    const { data: employees, error } = await supabase.from('employees').select('*').eq('employeeId', employeeId);
     if (error) return next(new Error('Đã có lỗi xảy ra. Vui lòng thử lại sau.'));
     if (employees.length === 0) return next(new AppError(StatusCodes.NOT_FOUND, 'Không tìm thấy dữ liệu'));
 
@@ -53,10 +53,10 @@ export const updateEmployee = catchAsync(async (req: Request, res: Response, nex
         return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu cập nhật nhân viên không hợp lệ.'));
 
     // Validate params
-    const employeeId = req.params.employee_id;
+    const employeeId = req.params.employeeId;
     if (!employeeId) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu cập nhật nhân viên không hợp lệ.'));
 
-    const { error } = await supabase.from('employees').update(data).eq('employee_id', employeeId);
+    const { error } = await supabase.from('employees').update(data).eq('employeeId', employeeId);
     if (error) return next(new Error('Đã có lỗi xảy ra. Vui lòng thử lại sau.'));
 
     // Return data
@@ -65,10 +65,10 @@ export const updateEmployee = catchAsync(async (req: Request, res: Response, nex
 
 export const deleteEmployee = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // Validate params
-    const employeeId = req.params.employee_id;
+    const employeeId = req.params.employeeId;
     if (!employeeId) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu xóa nhân viên không hợp lệ.'));
 
-    const { error } = await supabase.from('employees').delete().eq('service_id', employeeId);
+    const { error } = await supabase.from('employees').delete().eq('employeeId', employeeId);
     if (error) return next(new Error('Đã có lỗi xảy ra. Vui lòng thử lại sau.'));
 
     // Return data

@@ -19,11 +19,11 @@ export const getServices = catchAsync(async (req: Request, res: Response, next: 
 
 export const getService = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // Validate params
-    const serviceId = req.params.service_id;
+    const serviceId = req.params.serviceId;
     if (!serviceId) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu lấy dịch vụ không hợp lệ.'));
 
     // Query data
-    const { data: services, error } = await supabase.from('services').select('*').eq('service_id', serviceId);
+    const { data: services, error } = await supabase.from('services').select('*').eq('serviceId', serviceId);
     if (error) return next(new Error('Đã có lỗi xảy ra. Vui lòng thử lại sau.'));
     if (services.length === 0) return next(new AppError(StatusCodes.NOT_FOUND, 'Không tìm thấy dữ liệu'));
 
@@ -51,10 +51,10 @@ export const updateService = catchAsync(async (req: Request, res: Response, next
     if (!success && !data) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu cập nhật dịch vụ không hợp lệ.'));
 
     // Validate params
-    const serviceId = req.params.service_id;
+    const serviceId = req.params.serviceId;
     if (!serviceId) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu cập nhật dịch vụ không hợp lệ.'));
 
-    const { error } = await supabase.from('services').update(data).eq('service_id', serviceId);
+    const { error } = await supabase.from('services').update(data).eq('serviceId', serviceId);
     if (error) return next(new Error('Đã có lỗi xảy ra. Vui lòng thử lại sau.'));
 
     // Return data
@@ -63,10 +63,10 @@ export const updateService = catchAsync(async (req: Request, res: Response, next
 
 export const deleteService = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // Validate params
-    const serviceId = req.params.service_id;
+    const serviceId = req.params.serviceId;
     if (!serviceId) return next(new AppError(StatusCodes.BAD_REQUEST, 'Dữ liệu xóa dịch vụ không hợp lệ.'));
 
-    const { error } = await supabase.from('services').delete().eq('service_id', serviceId);
+    const { error } = await supabase.from('services').delete().eq('serviceId', serviceId);
     if (error) return next(new Error('Đã có lỗi xảy ra. Vui lòng thử lại sau.'));
 
     // Return data
