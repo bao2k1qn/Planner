@@ -15,8 +15,8 @@ const bookingFormSchema = z
       .max(30, {
         message: "Tên không được dài hơn 30 ký tự.",
       }),
-    service: z.string({ required_error: "Vui lòng chọn một dịch vụ." }),
-    employee: z.string({
+    serviceId: z.string({ required_error: "Vui lòng chọn một dịch vụ." }),
+    employeeId: z.string({
       required_error: "Vui lòng chọn một nhân viên.",
     }),
     isSelectedInAdvance: z.boolean({

@@ -30,25 +30,13 @@ import useInitialBookingForm, {
 } from "./composables/useInitialBookingForm";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-
-const languages = [
-  { label: "Rum 1", value: "en" },
-  { label: "Rum 2", value: "fr" },
-  { label: "Rum 3", value: "de" },
-  { label: "Rum 4", value: "es" },
-  { label: "Rum 5", value: "pt" },
-] as const;
-
-const services = [
-  { label: "Rum 1", value: "en" },
-  { label: "Rum 2", value: "fr" },
-  { label: "Rum 3", value: "de" },
-  { label: "Rum 4", value: "es" },
-  { label: "Rum 5", value: "pt" },
-] as const;
+import useInitialServiceData from "./composables/useInitialServiceData";
+import useInitialEmployeeData from "./composables/useInitialEmployeeData";
 
 const BookingForm = () => {
   const form = useInitialBookingForm();
+  const serviceQuery = useInitialServiceData();
+  const employeeQuery = useInitialEmployeeData();
 
   function onSubmit(data: BookingFormValues) {
     toast({
@@ -86,7 +74,7 @@ const BookingForm = () => {
         <div className="flex gap-8">
           <FormField
             control={form.control}
-            name="service"
+            name="serviceId"
             render={({ field }) => (
               <FormItem className="flex-1 min-w-[200px]">
                 <FormLabel>Dịch vụ</FormLabel>
@@ -102,9 +90,9 @@ const BookingForm = () => {
                         )}
                       >
                         {field.value
-                          ? services.find(
-                              (service) => service.value === field.value
-                            )?.label
+                          ? serviceQuery.data?.data.find(
+                              (service) => service.serviceId === field.value
+                            )?.name
                           : "Chọn dịch vụ."}
                         <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </Button>
@@ -116,24 +104,24 @@ const BookingForm = () => {
                       <CommandEmpty>Không tìm thấy dịch vụ nào.</CommandEmpty>
                       <CommandList>
                         <CommandGroup>
-                          {services.map((service) => (
+                          {serviceQuery.data?.data.map((service) => (
                             <CommandItem
-                              value={service.label}
-                              key={service.value}
+                              value={service.serviceId}
+                              key={service.serviceId}
                               onSelect={() => {
-                                form.setValue("service", service.value);
-                                form.setError("service", { message: "" });
+                                form.setValue("serviceId", service.serviceId);
+                                form.setError("serviceId", { message: "" });
                               }}
                             >
                               <CheckIcon
                                 className={cn(
                                   "mr-2 h-4 w-4",
-                                  service.value === field.value
+                                  service.serviceId === field.value
                                     ? "opacity-100"
                                     : "opacity-0"
                                 )}
                               />
-                              {service.label}
+                              {service.name}
                             </CommandItem>
                           ))}
                         </CommandGroup>
@@ -185,7 +173,7 @@ const BookingForm = () => {
         <div className="flex gap-8">
           <FormField
             control={form.control}
-            name="employee"
+            name="employeeId"
             render={({ field }) => (
               <FormItem className="w-fit min-w-[200px]">
                 <FormLabel>Nhân viên</FormLabel>
@@ -201,9 +189,9 @@ const BookingForm = () => {
                         )}
                       >
                         {field.value
-                          ? languages.find(
-                              (language) => language.value === field.value
-                            )?.label
+                          ? employeeQuery.data?.data.find(
+                              (employee) => employee.employeeId === field.value
+                            )?.name
                           : "Chọn nhân viên."}
                         <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                       </Button>
@@ -215,24 +203,27 @@ const BookingForm = () => {
                       <CommandEmpty>Không tìm thấy nhân viên nào.</CommandEmpty>
                       <CommandList>
                         <CommandGroup>
-                          {languages.map((language) => (
+                          {employeeQuery.data?.data.map((employee) => (
                             <CommandItem
-                              value={language.label}
-                              key={language.value}
+                              value={employee.employeeId}
+                              key={employee.employeeId}
                               onSelect={() => {
-                                form.setValue("employee", language.value);
-                                form.setError("employee", { message: "" });
+                                form.setValue(
+                                  "employeeId",
+                                  employee.employeeId
+                                );
+                                form.setError("employeeId", { message: "" });
                               }}
                             >
                               <CheckIcon
                                 className={cn(
                                   "mr-2 h-4 w-4",
-                                  language.value === field.value
+                                  employee.employeeId === field.value
                                     ? "opacity-100"
                                     : "opacity-0"
                                 )}
                               />
-                              {language.label}
+                              {employee.name}
                             </CommandItem>
                           ))}
                         </CommandGroup>
