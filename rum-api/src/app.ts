@@ -4,11 +4,11 @@ import path from 'path';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import compression from 'compression';
-import './database/createConnection';
 
 import authRoute from './routes/auth.route';
 import servicesRoute from './routes/services.route';
 import employeesRoute from './routes/employees.route';
+import bookingsRoute from './routes/bookings.route';
 
 import { ErrorHandler } from './controllers/error.controller';
 
@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoute);
 app.use('/api/services', servicesRoute);
 app.use('/api/employees', employeesRoute);
+app.use('/api/bookings', bookingsRoute);
 
 app.get('*', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server');
