@@ -15,7 +15,7 @@ const Planner = () => {
         data={employees}
         renderSidebarItem={(employee) => employee.name}
       />
-      <Content data={tasks} renderContentItem={(task) => task.referenceId} />
+      <Content data={tasks} renderContentItem={(task) => task.name} />
 
       <Line />
       <Grid />

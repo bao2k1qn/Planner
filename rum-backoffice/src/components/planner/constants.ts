@@ -2,35 +2,35 @@
 export const employees = [
   {
     id: "1",
-    name: "Alexandra Ario 1",
+    name: "Ngọc Yên",
   },
   {
     id: "2",
-    name: "Alexandra Ario 2",
+    name: "Minh Bảo",
   },
   {
     id: "3",
-    name: "Alexandra Ario 3",
+    name: "Văn Tài",
   },
   {
     id: "4",
-    name: "Alexandra Ario 4",
+    name: "Anh Chí",
   },
   {
     id: "5",
-    name: "Alexandra Ario 5",
+    name: "Xuân hạ",
   },
   {
     id: "6",
-    name: "Alexandra Ario 6",
+    name: "Minh Nghi",
   },
   {
     id: "7",
-    name: "Alexandra Ario 7",
+    name: "Xuân Bắc",
   },
   {
     id: "8",
-    name: "Alexandra Ario 8",
+    name: "Phan Kiến",
   },
   {
     id: "9",
@@ -57,28 +57,59 @@ export const employees = [
 export const tasks = [
   {
     id: "tasks-1",
-    startDate: "2024-07-19T05:47:09.115Z",
-    endDate: "2024-07-19T10:47:09.115Z",
+    startDate: "2024-08-05T05:47:09.115Z",
+    endDate: "2024-08-05T10:47:09.115Z",
     referenceId: "2",
-    name: "anc",
+    name: "Thiết kế SCR-1",
   },
   {
     id: "tasks-2",
-    startDate: "2024-07-19T11:00:00.000Z",
-    endDate: "2024-07-19T12:00:00.000Z",
+    startDate: "2024-08-05T11:00:00.000Z",
+    endDate: "2024-08-05T12:00:00.000Z",
     referenceId: "6",
+    name: "Thiết kế SCR-2",
   },
   {
     id: "tasks-3",
-    startDate: "2024-07-19T12:00:00.000Z",
-    endDate: "2024-07-19T13:00:00.000Z",
+    startDate: "2024-08-05T12:00:00.000Z",
+    endDate: "2024-08-05T13:00:00.000Z",
     referenceId: "6",
+    name: "Codding SCR-1",
   },
   {
     id: "tasks-4",
-    startDate: "2024-07-19T14:00:00.000Z",
-    endDate: "2024-07-19T16:00:00.000Z",
+    startDate: "2024-08-05T14:00:00.000Z",
+    endDate: "2024-08-05T16:00:00.000Z",
     referenceId: "5",
+    name: "Codding SCR-2",
+  },
+  {
+    id: "tasks-4",
+    startDate: "2024-08-05T15:00:00.000Z",
+    endDate: "2024-08-05T16:00:00.000Z",
+    referenceId: "4",
+    name: "Testing SCR-2",
+  },
+  {
+    id: "tasks-4",
+    startDate: "2024-08-05T15:30:00.000Z",
+    endDate: "2024-08-05T16:59:00.000Z",
+    referenceId: "2",
+    name: "Testing SCR-3",
+  },
+  {
+    id: "tasks-4",
+    startDate: "2024-08-05T11:30:00.000Z",
+    endDate: "2024-08-05T14:59:00.000Z",
+    referenceId: "3",
+    name: "Deploy SCR-3",
+  },
+  {
+    id: "tasks-4",
+    startDate: "2024-08-05T13:30:00.000Z",
+    endDate: "2024-08-05T15:59:00.000Z",
+    referenceId: "1",
+    name: "Deploy SCR-3",
   },
 ];
 

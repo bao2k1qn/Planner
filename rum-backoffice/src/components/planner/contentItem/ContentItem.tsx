@@ -47,9 +47,9 @@ const ContentItem = <T extends RequiredFields>({
     >
       <div
         className={cn(
-          "bg-pink-100/50 p-1 border-[2px] border-pink-200 rounded-md w-full h-full hover:bg-pink-200/50 cursor-pointer font-semibold text-pink-600 text-sm flex justify-between items-center group",
+          "bg-green-100/50 p-1 border-[2px] border-green-200 rounded-md w-full h-full hover:bg-green-200/50 cursor-pointer font-semibold text-green-600 text-sm flex justify-between items-center group relative",
           {
-            "bg-pink-300/50 border-pink-400 hover:bg-pink-400/50": isActive,
+            "bg-green-300/50 border-green-400 hover:bg-green-400/50": isActive,
           }
         )}
       >
@@ -58,7 +58,7 @@ const ContentItem = <T extends RequiredFields>({
           onMouseDown={(e) => handlerWithDirection(e, "LEFT")}
         />
         <div className="flex-1 text-center">{renderContentItem(item)}</div>
-        <div>
+        <div className="absolute bottom-0 right-1 h-full flex items-end text-xs">
           {moment(time.startDate).format("H:mm")} -{" "}
           {moment(time.endDate).format("H:mm")}
         </div>
